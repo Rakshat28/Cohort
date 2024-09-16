@@ -8,6 +8,39 @@
 <body>
     <p>
         This is a page to store the notes of Authentications
+
+
+        Hashing :
+        the input is converted into some gibberish and stored in the DB
+        same inputs give same output (hashed output)
+        I love Rakshat ===> slkafjcbeof2398y89y42p39;wdiali
+        (always)
+        and that gibberish can never be converted back to the original input
+
+
+        Encryption :
+        the input is converted to gibberish and the gibberish can be converted back to the input
+        using a key
+
+        JWT(Json Web Token):
+        it takes a JSON as a input
+        it creates a Token (a very long gibberish string)
+        whoever has the output can see the input , so it is not protected in any way
+        anyone can do convertion of input to output and output to input , but only the Token provider can do verification
+        it is sort of a digital signature (just like anyone can see your signature , but only the bank can verify it)
+        can be verified using the password
+
+        What is Local Storage?
+        inspect>application>local Storage
+        every domain has its own local storage and access cross domain local storage is not possible
+
+        local storage is stored in key value pair
+
+
     </p>
-</body>
+    <!-- lets see how we can store some data in local storage  -->
+     <input type="text" id="username" placeholder="Enter your username">
+     <button id="clickButton">Click Me</button>
+
+     <script src="./script.js"></script>
 </html>
