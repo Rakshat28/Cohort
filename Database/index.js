@@ -27,10 +27,13 @@
       password: password
     });
   
-    user.save();
-    res.json({
-      "msg":"User created successfully"
-    })
+    try {
+      await user.save(); // Explicitly wait for saving
+      res.json({ "msg": "User created successfully" });
+  } catch (err) {
+      console.error(err); // Handle errors
+      res.status(500).send("Internal server error");
+  }
     
   })
   
