@@ -4,6 +4,11 @@ import './App.css'
 function App() {
   const [count, setCount] = useState(0)
 
+
+  // using useCallback we have memoized a function such that on any rerender of the page , the value of
+  // the function remains saved (if none of its components were changed)
+  // this sspecially helps when we are passing the functions as props to any other component , thus 
+  // preventing unnecessaary re-renders
   const inputFunction = useCallback(()=>{
     console.log("hello ji");
   },[])
