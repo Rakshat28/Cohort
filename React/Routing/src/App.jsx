@@ -1,12 +1,18 @@
-
+// you will have to do npm install react-router-dom
+import React,{ Suspense } from 'react';
 import './App.css'
-import Dashboard from './components/Dashboard'
-import Landing from './components/Landing'
+// // import Dashboard from './components/Dashboard'
+// import Landing from './components/Landing'
 import Navbar from './components/Navbar'
 import {BrowserRouter, Routes, Route, useNavigate} from 'react-router-dom'
 
+// what is lazy loading
+const Landing = React.lazy(()=>import("./components/Landing"));
+
+const Dashboard = React.lazy(()=>import("./components/Dashboard"));
+
 function App() {
-  
+  // for lazy loadin now use suspense API
   return (
    <div>
     {/* {/* react lets us create single page application 
@@ -23,10 +29,12 @@ function App() {
 
     <BrowserRouter>
       <Appbar />
+      <Suspense fallback={<div>Loading...</div>}>
       <Routes>
-        <Route path="/" element={<Landing />}/>
-        <Route path="/dashboard" element={<Dashboard />}/>
+        <Route path="/" element={<Landing />} />
+        <Route path="/dashboard" element={<Dashboard /> } />
       </Routes>
+      </Suspense>
     </BrowserRouter>
       {/*
       when we use window.location.href
