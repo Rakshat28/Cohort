@@ -5,6 +5,8 @@ import { CountContext } from './context';
 function App() {
   const [count, setCount]=useState(0);
   return (
+
+    // key concepts == context , provider , consumer
   <div>
 
     <CountContext.Provider value={count}>
