@@ -13,6 +13,7 @@ const Dashboard = React.lazy(()=>import("./components/Dashboard"));
 
 function App() {
   // for lazy loadin now use suspense API
+  //  suspense api is used to show something while your request is comming from the backend
   return (
    <div>
     {/* {/* react lets us create single page application 
