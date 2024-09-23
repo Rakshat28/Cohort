@@ -2,6 +2,7 @@
 import { useRecoilState,useSetRecoilState,useRecoilValue,RecoilRoot } from 'recoil';
 import './App.css'
 import { countAtom } from './store/atoms/count';
+import { evenSelector } from './store/selectors/evenSelector';
 
 // do npm  intsall recoil
 //  context API was used to make syntax cleaner and to get rid of prop drilling 
@@ -39,6 +40,7 @@ function Count(){
   return (
     <div>
       <CountRenderer />
+      <EvenCountRenderer />
       <Buttons />
     </div>
   )
@@ -53,8 +55,20 @@ function CountRenderer(){
   )
 }
 
+function EvenCountRenderer(){
+  const isEven = useRecoilValue(evenSelector);
+  return (
+    <div>
+      {isEven?"It is even":null}
+    </div>
+  )
+}
+
 function Buttons(){
   const setCount=useSetRecoilState(countAtom);
+  // instead of this if we use useRecoilState then it will pass the value  of count also
+  // thus the button will also re-render , to prevent the buttons from getting re-rendered, we
+  // will use useSetRecoilState , as we only need setCount
   return(
     <div>
       <button onClick={()=>{setCount(count=>count+1)}
