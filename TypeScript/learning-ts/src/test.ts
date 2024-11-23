@@ -40,7 +40,7 @@ interface User{
     firstName:string,
     lastName:string,
     age:number
-}
+};
 
 function isAdult(user : User):boolean{
     return user.age>18?true:false;
