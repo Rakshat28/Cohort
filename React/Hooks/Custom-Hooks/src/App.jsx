@@ -41,37 +41,72 @@
 
 
 //data fetching custom hooks
-import axios from 'axios';
+// import axios from 'axios';
+// import { useState,useEffect } from "react";
+
+// function useTodos(){
+//   const [todos,setTodos] = useState([])
+
+//   useEffect(()=>{
+//     axios.get("https://sum-server.100xdevs.com/todos")
+//     .then(res=>{
+//       setTodos(res.data.todos);
+//     })
+//   },[])
+//   return todos;
+// }
+
+// function App(){
+//   const todos = useTodos();
+//   return (
+//     <div>
+//       {todos.map((todo)=>{
+//         return(
+//           <div>
+//             <h3>{todo.title}</h3>
+//             <br />
+//             <h5>{todo.description}</h5>
+//             <br />
+//           </div>
+//         )
+//       })}
+//     </div>
+//   )
+// }
+
+// export default App;
+
+// useDebounce 
+
 import { useState,useEffect } from "react";
-
-function useTodos(){
-  const [todos,setTodos] = useState([])
-
-  useEffect(()=>{
-    axios.get("https://sum-server.100xdevs.com/todos")
-    .then(res=>{
-      setTodos(res.data.todos);
-    })
-  },[])
-  return todos;
-}
-
 function App(){
-  const todos = useTodos();
-  return (
+  const [value,setValue] = useState('');
+  const debouncedValue = useDebounce(value,500);
+  return(
     <div>
-      {todos.map((todo)=>{
-        return(
-          <div>
-            <h3>{todo.title}</h3>
-            <br />
-            <h5>{todo.description}</h5>
-            <br />
-          </div>
-        )
-      })}
+      {debouncedValue}
+      <input 
+      type="text"
+      value = {value}
+      onChange = {e => setValue(e.target.value)} />
     </div>
   )
+}
+function useDebounce(value,delay){
+  const [debouncedValue,setDebouncedValue] = useState(value);
+  useEffect(()=>{
+    let timeout = setTimeout(()=>{
+      setDebouncedValue(value);
+    },delay);
+
+    return ()=>{
+      clearTimeout(timeout);
+    }
+
+  },[value])
+
+
+  return debouncedValue;
 }
 
 export default App;
