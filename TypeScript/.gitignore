@@ -1,5 +1,0 @@
-dist
-tsconfig.tsbuildinfo
-
-# when you create a dist folder , go to the tsconfig.json and change the root and out 
-# root src and dist in out
